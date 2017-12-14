@@ -1,0 +1,11 @@
+E:\github.com\jenkinstest\app\obj\Release\netcoreapp2.0\app.csprojResolveAssemblyReference.cache
+E:\github.com\jenkinstest\app\obj\Release\netcoreapp2.0\app.csproj.CoreCompileInputs.cache
+E:\github.com\jenkinstest\app\obj\Release\netcoreapp2.0\app.AssemblyInfoInputs.cache
+E:\github.com\jenkinstest\app\obj\Release\netcoreapp2.0\app.AssemblyInfo.cs
+E:\github.com\jenkinstest\app\bin\Release\netcoreapp2.0\app.deps.json
+E:\github.com\jenkinstest\app\bin\Release\netcoreapp2.0\app.runtimeconfig.json
+E:\github.com\jenkinstest\app\bin\Release\netcoreapp2.0\app.runtimeconfig.dev.json
+E:\github.com\jenkinstest\app\bin\Release\netcoreapp2.0\app.dll
+E:\github.com\jenkinstest\app\bin\Release\netcoreapp2.0\app.pdb
+E:\github.com\jenkinstest\app\obj\Release\netcoreapp2.0\app.dll
+E:\github.com\jenkinstest\app\obj\Release\netcoreapp2.0\app.pdb
