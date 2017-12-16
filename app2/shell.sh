@@ -1,9 +1,9 @@
 ﻿#!/bin/bash
 # 获取短版本号
 GITHASH=`git rev-parse --short HEAD`
-APPNAME='app1'
+APPNAME='app2'
 PUBLISHFOLDER='publishedappp'
-APPPORT='5007'
+APPPORT='5008'
 echo
 echo ---------------版本号为...------------------
 echo $GITHASH
