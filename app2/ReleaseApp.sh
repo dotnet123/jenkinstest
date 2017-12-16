@@ -4,7 +4,7 @@ GITHASH=`git rev-parse --short HEAD`
 APPNAME='app2'
 PUBLISHFOLDER='ReleaseApp'
 APPPORT='5008'
-CURTime="`date +%Y-%m-%d-%H-%m`"
+CURTime="`date +%Y%m%d-%H:%m`"
 echo
 echo ---------------版本号为...------------------
 echo $GITHASH
