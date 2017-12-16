@@ -1,6 +1,6 @@
 FROM ubuntu1710/dotnet:v212
 WORKDIR /app
-COPY ./publishedappp .
+COPY ./ReleaseApp .
 EXPOSE 5000
 
 ENTRYPOINT ["dotnet", "app2.dll"]

@@ -2,8 +2,9 @@
 # 获取短版本号
 GITHASH=`git rev-parse --short HEAD`
 APPNAME='app2'
-PUBLISHFOLDER='publishedappp'
+PUBLISHFOLDER='ReleaseApp'
 APPPORT='5008'
+CURTime="`date +%Y-%m-%d-%H-%m`"
 echo
 echo ---------------版本号为...------------------
 echo $GITHASH
@@ -21,18 +22,21 @@ echo
 cd  $APPNAME/
 echo
 
-echo ---------------移除容器...------------------
-echo
-docker rm -f $APPNAME || true
-echo
+
 echo ---------------Build镜像...------------------
 echo
 docker build -t $APPNAME:$GITHASH .
 echo
 echo ---------------镜像打标签...------------------
 echo
-docker tag $APPNAME:$GITHASH $APPNAME:latest
+#docker tag $APPNAME:$GITHASH $APPNAME:latest
+docker tag $APPNAME:$GITHASH $APPNAME:$CURTime
+echo
+
+echo ---------------移除容器...------------------
+echo
+docker rm -f $APPNAME || true
 echo
 echo ---------------启动容器...------------------
 echo
-docker run --name $APPNAME -d -p $APPPORT:5000 --env ASPNETCORE_ENVIRONMENT=Development $APPNAME:latest
+docker run --name $APPNAME -d -p $APPPORT:5000 --env ASPNETCORE_ENVIRONMENT=Development $APPNAME:$CURTime
