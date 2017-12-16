@@ -18,7 +18,7 @@ echo
 echo
 echo ---------------跳到制定目录------------------
 echo
-cd  $APPNAME/$PUBLISHFOLDER/
+cd  $APPNAME/
 echo
 
 echo ---------------移除容器...------------------
