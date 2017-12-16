@@ -3,4 +3,4 @@ WORKDIR /app
 COPY ./publishedappp .
 EXPOSE 5000
 
-ENTRYPOINT ["dotnet", "app1.dll"]
+ENTRYPOINT ["dotnet", "app2.dll"]
