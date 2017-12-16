@@ -31,32 +31,32 @@ namespace app
         };
         public static void Main(string[] args)
         {
-            //BuildWebHost(args).Run();
-            while (true)
-            {
-                int count = 10000;
-                string url = "http://10.1.4.222:5000/api/values";
-                CountdownEvent cde = new CountdownEvent(count);
-                Stopwatch sw = new Stopwatch();
-                sw.Start();
-                Parallel.For(0, count, i =>
-                {
+            BuildWebHost(args).Run();
+            //while (true)
+            //{
+            //    int count = 10000;
+            //    string url = "http://10.1.4.222:5000/api/values";
+            //    CountdownEvent cde = new CountdownEvent(count);
+            //    Stopwatch sw = new Stopwatch();
+            //    sw.Start();
+            //    Parallel.For(0, count, i =>
+            //    {
 
-                    HttpClient.GetStringAsync(url).ContinueWith((t) =>
-                    {
-                        if (t.Exception != null)
-                        {
-                            Console.WriteLine(t.Exception.Message);
-                        }
-                        cde.Signal();
+            //        HttpClient.GetStringAsync(url).ContinueWith((t) =>
+            //        {
+            //            if (t.Exception != null)
+            //            {
+            //                Console.WriteLine(t.Exception.Message);
+            //            }
+            //            cde.Signal();
 
 
-                    });
-                });
-                cde.Wait();
-                sw.Stop();
-                Console.WriteLine(sw.ElapsedMilliseconds);
-            }
+            //        });
+            //    });
+            //    cde.Wait();
+            //    sw.Stop();
+            //    Console.WriteLine(sw.ElapsedMilliseconds);
+            //}
         
             // App.Init();
             // BuildWebHost(args).Run();
