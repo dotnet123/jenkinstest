@@ -38,8 +38,8 @@ echo
 echo
 echo ---------------移除容器...------------------
 echo
-docker -H tcp://139.129.130.123:2375 rm -f $APPNAME || true
+docker -H tcp://10.1.4.223:2375 rm -f $APPNAME || true
 echo
 echo ---------------启动容器...------------------
 echo
-docker -H tcp://139.129.130.123:2375 run --name $APPNAME -d -p $APPPORT:5000 --env ASPNETCORE_ENVIRONMENT=Development 10.1.4.222:9999/$APPNAME:$CURTime
+docker -H tcp://10.1.4.223:2375 run --name $APPNAME -d -p $APPPORT:5000 --env ASPNETCORE_ENVIRONMENT=Development 10.1.4.222:9999/$APPNAME:$CURTime
