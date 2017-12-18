@@ -9,19 +9,17 @@ echo
 echo ---------------版本号为...------------------
 echo $GITHASH
 echo ---------------服务名称...------------------
-echo
 echo $APPNAME
-echo
-echo ---------------发布...------------------
-echo
+echo ---------------开始发布...------------------
+
 dotnet publish $APPNAME  -c Release -o $PUBLISHFOLDER
 echo
-echo
+echo---------------发布完成...------------------
+
 echo ---------------跳到制定目录------------------
-echo
+echo  $APPNAME/
 cd  $APPNAME/
 echo
-
 
 echo ---------------Build镜像...------------------
 echo
