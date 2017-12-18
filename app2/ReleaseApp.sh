@@ -28,9 +28,13 @@ echo
 echo ---------------镜像打标签...------------------
 echo
 #docker tag $APPNAME:$GITHASH $APPNAME:latest
-docker tag $APPNAME:$GITHASH $APPNAME:$CURTime
+#docker tag $APPNAME:$GITHASH $APPNAME:$CURTime
+docker tag $APPNAME:$GITHASH 10.1.4.222:9999/$APPNAME:$CURTime  
 echo
-
+echo ---------------推送镜像...------------------
+echo
+docker push 10.1.4.222:9999/$APPNAME:$CURTime  
+echo
 echo ---------------移除容器...------------------
 echo
 docker rm -f $APPNAME || true

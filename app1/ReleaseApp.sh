@@ -22,18 +22,24 @@ echo
 cd  $APPNAME/
 echo
 
-echo ---------------移除容器...------------------
-echo
-docker rm -f $APPNAME || true
-echo
+
 echo ---------------Build镜像...------------------
 echo
 docker build -t $APPNAME:$GITHASH .
 echo
 echo ---------------镜像打标签...------------------
 echo
-docker tag $APPNAME:$GITHASH $APPNAME:$CURTime
+#docker tag $APPNAME:$GITHASH $APPNAME:$CURTime
+docker tag $APPNAME:$GITHASH 10.1.4.222:9999/$APPNAME:$CURTime  
+echo ---------------推送镜像...------------------
+echo
+docker push 10.1.4.222:9999/$APPNAME:$CURTime  
+echo
+echo
+echo ---------------移除容器...------------------
+echo
+docker -H tcp://139.129.130.123:2375 rm -f $APPNAME || true
 echo
 echo ---------------启动容器...------------------
 echo
-docker run --name $APPNAME -d -p $APPPORT:5000 --env ASPNETCORE_ENVIRONMENT=Development $APPNAME:$CURTime
+docker -H tcp://139.129.130.123:2375 run --name $APPNAME -d -p $APPPORT:5000 --env ASPNETCORE_ENVIRONMENT=Development 10.1.4.222:9999/$APPNAME:$CURTime

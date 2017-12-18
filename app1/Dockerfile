@@ -1,4 +1,4 @@
-FROM ubuntu1710/dotnet:v212
+FROM 10.1.4.222:9999/centos7dotnet212:v1
 WORKDIR /app
 COPY ./ReleaseApp .
 EXPOSE 5000
