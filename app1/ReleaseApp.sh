@@ -1,12 +1,12 @@
 ﻿#!/bin/bash
-# 获取短版本号
-GITHASH=`git rev-parse --short HEAD`
 APPNAME='app1'
 APPPORT='5007'
-PUBLISHFOLDER='ReleaseApp'
 DOCKERREGISTRY='10.1.4.222:9999'  
 APPHOST=('10.1.4.223:2375' '10.1.4.222:2375') 
+# 获取GIT短版本号
+GITHASH=`git rev-parse --short HEAD`
 CURTIME="`date +%Y-%m-%d-%H-%m`"
+PUBLISHFOLDER='ReleaseApp'
 echo
 echo ---------------版本号为...------------------
 echo $GITHASH
