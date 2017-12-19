@@ -19,7 +19,7 @@ echo
 echo ---------------跳到指定目录------------------
 echo
     cd  $APPNAME/
-echo
+echo $APPNAME/
 echo ---------------Build镜像...------------------
 echo
     docker build -t $APPNAME:$GITHASH .
