@@ -15,7 +15,7 @@ echo $APPNAME
 echo ---------------发布...------------------
 echo
    ret= `dotnet publish $APPNAME  -c Release -o $PUBLISHFOLDER`
-echo
+echo $ret
 echo ---------------跳到该服务目录$ret------------------
     cd  $APPNAME/
 echo $APPNAME/
