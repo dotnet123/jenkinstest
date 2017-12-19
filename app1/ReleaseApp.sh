@@ -14,14 +14,14 @@ echo ---------------服务名称...------------------
 echo $APPNAME
 echo ---------------发布...------------------
 echo
-    dotnet publish $APPNAME  -c Release -o $PUBLISHFOLDER
+   ret= `dotnet publish $APPNAME  -c Release -o $PUBLISHFOLDER`
 echo
-echo ---------------跳到该服务目录------------------
+echo ---------------跳到该服务目录$ret------------------
     cd  $APPNAME/
 echo $APPNAME/
 echo ---------------Build镜像...------------------
 echo
-    docker build -t $APPNAME:$GITHASH .
+ docker build -t $APPNAME:$GITHASH .
 echo
 echo ---------------镜像打标签...------------------
 echo
