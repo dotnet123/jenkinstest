@@ -5,7 +5,8 @@ APPNAME='app1'
 APPPORT='5007'
 PUBLISHFOLDER='ReleaseApp'
 DOCKERREGISTRY='10.1.4.222:9999'  
-CURTime="`date +%Y-%m-%d-%H-%m`"
+APPHOST=('10.1.4.223:2375' '10.1.4.222:2375') 
+CURTIME="`date +%Y-%m-%d-%H-%m`"
 echo
 echo ---------------版本号为...------------------
 echo $GITHASH
@@ -13,29 +14,32 @@ echo ---------------服务名称...------------------
 echo $APPNAME
 echo ---------------发布...------------------
 echo
-echo    `dotnet publish $APPNAME  -c Release -o $PUBLISHFOLDER`
+    dotnet publish $APPNAME  -c Release -o $PUBLISHFOLDER
 echo
 echo ---------------跳到指定目录------------------
 echo
-cd  $APPNAME/
+    cd  $APPNAME/
 echo
 echo ---------------Build镜像...------------------
 echo
-docker build -t $APPNAME:$GITHASH .
+    docker build -t $APPNAME:$GITHASH .
 echo
 echo ---------------镜像打标签...------------------
 echo
-#docker tag $APPNAME:$GITHASH $APPNAME:$CURTime
-docker tag $APPNAME:$GITHASH $DOCKERREGISTRY/$APPNAME:$CURTime  
+    #docker tag $APPNAME:$GITHASH $APPNAME:$CURTIME
+    docker tag $APPNAME:$GITHASH $DOCKERREGISTRY/$APPNAME:$CURTIME  
 echo ---------------推送镜像...------------------
 echo
-docker push $DOCKERREGISTRY/$APPNAME:$CURTime  
+     docker push $DOCKERREGISTRY/$APPNAME:$CURTIME  
 echo
-echo
+	for HOST in ${APPHOST[@]}  
+	do  
+echo ---------------操作主机${HOST}---------------  
 echo ---------------移除容器...------------------
 echo
-docker -H tcp://10.1.4.223:2375 rm -f $APPNAME || true
+     docker -H tcp://${HOST} rm -f $APPNAME || true
 echo
 echo ---------------启动容器...------------------
 echo
-docker -H tcp://10.1.4.223:2375 run --name $APPNAME -d -p $APPPORT:5000 --env ASPNETCORE_ENVIRONMENT=Development $DOCKERREGISTRY/$APPNAME:$CURTime
+     docker -H tcp://${HOST} run --name $APPNAME -d -p $APPPORT:5000 --env ASPNETCORE_ENVIRONMENT=Development $DOCKERREGISTRY/$APPNAME:$CURTIME
+	done  
