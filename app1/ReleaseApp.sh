@@ -34,7 +34,9 @@ echo
 echo
 	for HOST in ${APPHOST[@]}  
 	do  
-echo ---------------操作主机${HOST}---------------  
+echo ---------------操作主机${HOST}--------------- 
+echo
+echo
 echo ---------------移除容器...------------------
 echo
      docker -H tcp://${HOST} rm -f $APPNAME || true
@@ -42,4 +44,6 @@ echo
 echo ---------------启动容器...------------------
 echo
      docker -H tcp://${HOST} run --name $APPNAME -d -p $APPPORT:5000 --env ASPNETCORE_ENVIRONMENT=Development $DOCKERREGISTRY/$APPNAME:$CURTIME
+echo
+echo
 	done  
