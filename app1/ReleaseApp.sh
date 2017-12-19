@@ -17,10 +17,8 @@ echo
     dotnet publish $APPNAME  -c Release -o $PUBLISHFOLDER
 echo
 echo ---------------跳到该服务目录------------------
-echo
     cd  $APPNAME/
 echo $APPNAME/
-echo
 echo ---------------Build镜像...------------------
 echo
     docker build -t $APPNAME:$GITHASH .
