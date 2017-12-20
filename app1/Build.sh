@@ -8,7 +8,7 @@ APPHOST=('10.1.4.222:2375')
 GITHASH=`git rev-parse --short HEAD`
 CURTIME="`date +%Y-%m-%d-%H-%m`"
 PUBLISHFOLDER='ReleaseApp'
-$AppPath="$WORKSPACE/$JOB_NAME/" 
+AppPath="$WORKSPACE/$JOB_NAME/" 
 # testPath="$WORKSPACE/$JOB_NAME.test/"  
 # testLog="$WORKSPACE/$JOB_NAME.test/test-$GITHASH.log"  
 # if [ ! -d "$testPath" ];then  
