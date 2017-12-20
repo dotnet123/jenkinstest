@@ -16,14 +16,16 @@ echo
 echo ---------------跳到服务单元测试目录 ------------------
     cd  $APPNAME.test/
 echo 
-echo ---------------执行单元测试...------------------[当前目录:$(`pwd`)]
+echo ---------------执行单元测试...------------------
+echo                 $(`pwd`)
 echo
    dotnet test
 echo 
 echo ---------------跳到服务目录 ------------------
     cd  ../$APPNAME/
 echo 
-echo ---------------开始发布.......------------------ [当前目录:$(`pwd`)]
+echo ---------------开始发布.......------------------ 
+echo                 $(`pwd`)
 echo  
    #dotnet publish $APPNAME  -c Release -o $PUBLISHFOLDER
    dotnet publish -c Release -o $PUBLISHFOLDER
