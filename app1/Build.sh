@@ -13,18 +13,18 @@ echo $GITHASH
 echo ---------------服务名称...------------------
 echo $APPNAME
 echo
-echo ---------------跳到服务单元测试目录 $APPNAME.test/------------------
+echo ---------------跳到服务单元测试目录 ------------------
     cd  $APPNAME.test/
 echo 
-echo ---------------发布...------------------
+echo ---------------执行单元测试...------------------[当前目录:$(`pwd`)]
 echo
    dotnet test
 echo 
-echo ---------------跳到服务目录 $APPNAME/------------------
+echo ---------------跳到服务目录 ------------------
     cd  ../$APPNAME/
 echo 
-echo ---------------发布...------------------
-echo
+echo ---------------开始发布.......------------------ [当前目录:$(`pwd`)]
+echo  
    #dotnet publish $APPNAME  -c Release -o $PUBLISHFOLDER
    dotnet publish -c Release -o $PUBLISHFOLDER
 echo 
