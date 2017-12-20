@@ -1,6 +1,6 @@
 ﻿#!/bin/bash
-APPNAME='app1'
-APPPORT='5007'
+DockerAppName='app1'
+DockerPORT='5007'
 DOCKERREGISTRY='10.1.4.222:9999'  
 #APPHOST=('10.1.4.223:2375' '10.1.4.222:2375') 
 APPHOST=('10.1.4.222:2375') 
@@ -8,7 +8,7 @@ APPHOST=('10.1.4.222:2375')
 GITHASH=`git rev-parse --short HEAD`
 CURTIME="`date +%Y-%m-%d-%H-%m`"
 PUBLISHFOLDER='ReleaseApp'
-appPath="$WORKSPACE/$JOB_NAME/" 
+#appPath="$WORKSPACE/$JOB_NAME/" 
 # testPath="$WORKSPACE/$JOB_NAME.test/"  
 # testLog="$WORKSPACE/$JOB_NAME.test/test-$GITHASH.log"  
 # if [ ! -d "$testPath" ];then  
@@ -27,25 +27,24 @@ appPath="$WORKSPACE/$JOB_NAME/"
 #exit 1
 #fi
 echo ---------------跳到服务目录 ------------------
-cd  $appPath
+cd  $AppPath
 echo 
 echo ---------------开始发布.......------------------ 
-echo $(`pwd`)
 echo  
    #dotnet publish $APPNAME  -c Release -o $PUBLISHFOLDER
    dotnet publish -c Release -o $PUBLISHFOLDER
 echo 
 echo ---------------Build镜像...------------------
 echo
- docker build -t $APPNAME:$GITHASH .
+   docker build -t $DockerAppName:$GITHASH .
 echo
 echo ---------------镜像打标签...------------------
 echo
     #docker tag $APPNAME:$GITHASH $APPNAME:$CURTIME
-    docker tag $APPNAME:$GITHASH $DOCKERREGISTRY/$APPNAME:$CURTIME  
+    docker tag $DockerAppName:$GITHASH $DOCKERREGISTRY/$DockerAppName:$CURTIME  
 echo ---------------推送镜像...------------------
 echo
-     docker push $DOCKERREGISTRY/$APPNAME:$CURTIME  
+     docker push $DOCKERREGISTRY/$DockerAppName:$CURTIME  
 echo
 	for HOST in ${APPHOST[@]}  
 	do  
@@ -54,11 +53,11 @@ echo
 echo
 echo ---------------移除容器...------------------
 echo
-     docker -H tcp://${HOST} rm -f $APPNAME || true
+     docker -H tcp://${HOST} rm -f $DockerAppName || true
 echo
 echo ---------------启动容器...------------------
 echo
-     docker -H tcp://${HOST} run --name $APPNAME -d -p $APPPORT:5000 --env ASPNETCORE_ENVIRONMENT=Development $DOCKERREGISTRY/$APPNAME:$CURTIME
+     docker -H tcp://${HOST} run --name $DockerAppName -d -p $DockerPORT:5000 --env ASPNETCORE_ENVIRONMENT=Development $DOCKERREGISTRY/$DockerAppName:$CURTIME
 echo
 echo
 	done  
