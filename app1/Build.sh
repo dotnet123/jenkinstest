@@ -19,8 +19,8 @@ echo
 echo ---------------执行单元测试...------------------
 echo                 $(`pwd`)
 echo
-   dotnet test
-echo 
+   ret=$(`dotnet test`)
+echo 这里输出结果$ret
 echo ---------------跳到服务目录 ------------------
     cd  ../$APPNAME/
 echo 
