@@ -8,45 +8,33 @@ APPHOST=('10.1.4.222:2375')
 GITHASH=`git rev-parse --short HEAD`
 CURTIME="`date +%Y-%m-%d-%H-%m`"
 PUBLISHFOLDER='ReleaseApp'
-
 appPath="$WORKSPACE/$JOB_NAME/" 
-testPath="$WORKSPACE/$JOB_NAME.test/"  
-testLog="$WORKSPACE/$JOB_NAME.test/test-$GITHASH.log"  
-if [ ! -d "$testPath" ];then  
-echo "没找到单元测试项目"
-exit 1
-fi
-echo
-echo ---------------跳到服务单元测试目录 ------------------
-cd  testPath
-echo 
-echo ---------------执行单元测试...------------------
-echo                 
-echo
-#dotnet test -d $testLog
-echo
-echo---------------检测测试结果...------------------ 
-if [ ! -f "$testLog" ];then
-echo "没找到单元测试报告文件"
-exit 1
-fi
-lastLineLog=`tail -1 $testLog`
-SUFFIX="code of 1"
-if [[ lastLineLog == *$SUFFIX ]];then
-echo "单元测试未通过"
-exit 1
-fi
+# testPath="$WORKSPACE/$JOB_NAME.test/"  
+# testLog="$WORKSPACE/$JOB_NAME.test/test-$GITHASH.log"  
+# if [ ! -d "$testPath" ];then  
+# echo "没找到单元测试项目"
+# exit 1
+# fi
+#echo---------------检测测试结果...------------------ 
+#if [ ! -f "$testLog" ];then
+#echo "没找到单元测试报告文件"
+#exit 1
+#fi
+#lastLineLog=`tail -1 $testLog`
+#SUFFIX="code of 1"
+#if [[ lastLineLog == *$SUFFIX ]];then
+#echo "单元测试未通过"
+#exit 1
+#fi
 echo ---------------跳到服务目录 ------------------
 cd  $appPath
 echo 
 echo ---------------开始发布.......------------------ 
-echo                 $(`pwd`)
+echo $(`pwd`)
 echo  
    #dotnet publish $APPNAME  -c Release -o $PUBLISHFOLDER
    dotnet publish -c Release -o $PUBLISHFOLDER
 echo 
-
-
 echo ---------------Build镜像...------------------
 echo
  docker build -t $APPNAME:$GITHASH .
