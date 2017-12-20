@@ -23,7 +23,7 @@ echo
 echo ---------------执行单元测试...------------------
 echo                 
 echo
-dotnet test -d $testLog
+#dotnet test -d $testLog
 echo
 echo---------------检测测试结果...------------------ 
 if [ ! -f "$testLog" ];then
