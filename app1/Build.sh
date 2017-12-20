@@ -7,6 +7,14 @@ APPHOST=('10.1.4.223:2375' '10.1.4.222:2375')
 GITHASH=`git rev-parse --short HEAD`
 CURTIME="`date +%Y-%m-%d-%H-%m`"
 PUBLISHFOLDER='ReleaseApp'
+
+appPath="$WORKSPACE/$JOB_NAME/" 
+testPath="$WORKSPACE/$JOB_NAME.test/"  
+testLog="$WORKSPACE/$JOB_NAME.test/test-$GITHASH.log"  
+if [ ! -d "$testPath" ];then  
+echo "没找到单元测试项目"
+exit 1
+fi
 echo
 echo ---------------版本号为...------------------
 echo $GITHASH
@@ -14,15 +22,15 @@ echo ---------------服务名称...------------------
 echo $APPNAME
 echo
 echo ---------------跳到服务单元测试目录 ------------------
-    cd  $APPNAME.test/
+cd  testPath
 echo 
 echo ---------------执行单元测试...------------------
 echo                 $(`pwd`)
 echo
-   ret=$(`dotnet test`)
-echo 这里输出结果$ret
+dotnet test -d $testLog
+echo 
 echo ---------------跳到服务目录 ------------------
-    cd  ../$APPNAME/
+cd  $appPath
 echo 
 echo ---------------开始发布.......------------------ 
 echo                 $(`pwd`)
