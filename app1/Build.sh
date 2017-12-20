@@ -17,19 +17,25 @@ echo "没找到单元测试项目"
 exit 1
 fi
 echo
-echo ---------------版本号为...------------------
-echo $GITHASH
-echo ---------------服务名称...------------------
-echo $APPNAME
-echo
 echo ---------------跳到服务单元测试目录 ------------------
 cd  testPath
 echo 
 echo ---------------执行单元测试...------------------
-echo                 $(`pwd`)
+echo                 
 echo
 dotnet test -d $testLog
-echo 
+echo
+echo---------------检测测试结果...------------------ 
+if [ ! -f "$testLog" ];then
+echo "没找到单元测试报告文件"
+exit 1
+fi
+lastLineLog=`tail -1 $testLog`
+SUFFIX="code of 1"
+if [[ lastLineLog == *$SUFFIX ]];then
+echo "单元测试未通过"
+exit 1
+fi
 echo ---------------跳到服务目录 ------------------
 cd  $appPath
 echo 
